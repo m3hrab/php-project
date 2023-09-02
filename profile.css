@@ -1,0 +1,87 @@
+body {
+    background-color: teal;
+    font-family: sans-serif;
+}
+
+input {
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px sold white;
+}
+
+.button{
+    text-align: center;
+    margin: auto;
+    margin-top: 50px;
+    width: 100%;
+    cursor: pointer;
+}
+
+
+.button input{
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.button input:hover{
+    cursor: pointer;
+    background-color: rgb(34, 161, 2);
+    color: white;
+}
+
+label{
+    display: inline-block;
+    width: 130px;
+    height: 30px;
+    text-align: left;
+}
+
+.update-profile {
+    width: 550px;
+    text-align: left;
+    margin: auto;
+    background-color:rgba(253, 139, 119, 0.911);
+    margin-top: 100px;
+    padding: 30px;
+    height: 450px;
+    border-radius: 20px;
+
+    border: 2px solid whitesmoke;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logout {
+    text-align: center;
+    width: 100%;
+    margin-top:10px ;
+}
+.logout a:hover {
+    background-color: rgb(34, 161, 2);
+    color: white;
+}
+.logout a{
+    display: inline-block;
+    box-sizing: border-box;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid white;
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    font-size: 13px;
+    padding-top: 5px;
+}
+
+.message {
+    margin-top: 10px;
+    text-align: center;
+}
