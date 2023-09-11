@@ -1,33 +1,65 @@
-<?php
-require "dbcon.php";
-session_start();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor List</title>
+    <style>
+        .doctor-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin:20px 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
 
-// Query to fetch the list of doctors
-$sql = "SELECT * FROM doctors_list";
-$result = $conn->query($sql);
+        .doctor-image {
+            max-width: 300px;
+            max-height: 300px;
+            margin-right: 10px;
+        }
 
-if ($result->num_rows > 0) {
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Name</th><th>Clinic Address</th><th>Email</th><th>Contact</th><th>Specialist</th><th>Image</th></tr>";
+        .doctor-info {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
 
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["id"] . "</td>";
-        echo "<td>" . $row["name"] . "</td>";
-        echo "<td>" . $row["clinic_address"] . "</td>";
-        echo "<td>" . $row["email"] . "</td>";
-        echo "<td>" . $row["contact"] . "</td>";
-        echo "<td>" . $row["specialist"] . "</td>";
-        echo "<td><img src='images/" . $row["image"] . "' width='100'></td>";
-        echo "</tr>";
+        .appointment-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <?php
+    include 'dbcon.php';
+
+    $sql = "SELECT * FROM doctor_list";
+    $result = mysqli_query($con, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<div class='doctor-container'>";
+            if (!empty($row['image_path'])) {
+                echo "<img class='doctor-image' src='" . $row['image_path'] . "' alt='Doctor Image'>";
+            }
+            echo "<div class='doctor-info'>";
+            echo "<strong>Name:</strong> " . $row['name'] . "<br>";
+            echo "<strong>Specialist:</strong> " . $row['specialist'] . "<br>";
+            echo "<strong>Clinic Address:</strong> " . $row['clinic_address'] . "<br>";
+            echo "</div>";
+            echo "<button class='appointment-button'>Make an Appointment</button>";
+            echo "</div>";
+        }
+    } else {
+        echo "No doctors found.";
     }
 
-    echo "</table>";
-} else {
-    echo "No doctors found.";
-}
-
-// Close the database connection
-$conn->close();
-?>
-
+    mysqli_close($con);
+    ?>
+</body>
+</html>

@@ -1,28 +1,37 @@
 <?php
-require 'dbcon.php'; // Include the database connection file
+include 'dbcon.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST["name"];
-    $clinic_address = $_POST["clinic_address"];
-    $email = $_POST["email"];
-    $contact = $_POST["contact"];
-    $specialist = $_POST["specialist"];
-    $image = $_FILES["image"]["name"];
-    $image_tmp = $_FILES["image"]["tmp_name"];
+    $name = $_POST['name'];
+    $clinic_address = $_POST['clinic_address'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $specialist = $_POST['specialist'];
 
-    // Upload the image to a directory
-    $upload_dir = "uploads/"; 
-    move_uploaded_file($image_tmp, $upload_dir . $image);
+    // Handle image upload
+    $image_path = '';
+    if ($_FILES['image']['size'] > 0) {
+        $upload_dir = 'uploads/';
+        $image_name = $_FILES['image']['name'];
+        $image_path = $upload_dir . $image_name;
 
-    // Insert data into the database
-    $sql = "INSERT INTO doctors_list (name, clinic_address, email, contact, specialist, image) VALUES ('$name', '$clinic_address', '$email', '$contact', '$specialist', '$image')";
-    
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $image_path)) {
+            echo "Image uploaded successfully!<br>";
+        } else {
+            echo "Image upload failed.<br>";
+            echo $image_path;
+        }
+    }
+
+    $sql = "INSERT INTO doctor_list (name, clinic_address, email, contact, specialist, image_path)
+            VALUES ('$name', '$clinic_address', '$email', '$contact', '$specialist', '$image_path')";
+
     if (mysqli_query($con, $sql)) {
-        echo "Doctor registration successful.";
+        header('location: doctors.php'); 
     } else {
         echo "Error: " . mysqli_error($con);
     }
-
-    mysqli_close($con);
 }
+
+mysqli_close($con);
 ?>
