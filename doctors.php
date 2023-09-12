@@ -103,7 +103,7 @@
         </header>
 
     <main>
-    <h1 style="text-align:center;">All Doctors</h1>
+    <h1 style="text-align:center; margin-top:100px;">All Doctors</h1>
     <?php
     include 'dbcon.php';
 
