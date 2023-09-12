@@ -8,7 +8,7 @@
         /* Style for the container holding each doctor's information */
         main {
             display:flex;
-            flex-direction:column;
+            flex-direction: column;
             align-items:center;
         }
         .doctor-container {
@@ -100,7 +100,10 @@
             echo "<strong>Specialist:</strong> " . $row['specialist'] . "<br>";
             echo "<strong>Clinic Address:</strong> " . $row['clinic_address'] . "<br>";
             echo "</div>";
-            echo "<button class='appointment-button' onclick='openModal()'>Make an Appointment</button>";
+            
+            // Add data attributes for doctorId and userId to the appointment button
+            echo "<button class='appointment-button' onclick='openModal(this)' data-doctorid='" . $row['id'] . "' data-userid='" . $userId . "'>Make an Appointment</button>";
+            
             echo "</div>";
         }
     } else {
@@ -130,24 +133,45 @@
     </div>
 
     <script>
-        // JavaScript functions to handle the appointment modal
+        // Global variables to store doctorId and userId
+        var openModal = {
+            doctorId: null,
+            userId: null
+        };
 
-        // Function to open the appointment modal
-        function openModal() {
+        function openModal(button) {
+            // Get the doctorId and userId from the data attributes of the clicked button
+            openModal.doctorId = button.getAttribute('data-doctorid');
+            openModal.userId = button.getAttribute('data-userid');
+
             document.getElementById("appointmentModal").style.display = "block";
         }
 
-        // Function to close the appointment modal
         function closeModal() {
             document.getElementById("appointmentModal").style.display = "none";
         }
 
-        // Function to handle the "Confirm Appointment" button
         function confirmAppointment() {
-            // Add your appointment confirmation logic here
-            // You can send the selected time slot to the server, update the database, etc.
-            alert("Appointment confirmed!");
-            closeModal();
+            const selectedTimeSlot = document.getElementById("timeSlots").value;
+            const doctorId = openModal.doctorId;
+            const userId = openModal.userId;
+
+            if (selectedTimeSlot && doctorId && userId) {
+                // Create an AJAX request to add the appointment
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "add_appointment.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        // Handle the response, e.g., display a success message
+                        alert("Appointment confirmed!");
+                        closeModal();
+                    }
+                };
+                xhr.send(`doctorId=${doctorId}&userId=${userId}&timeSlot=${selectedTimeSlot}`);
+            } else {
+                alert("Please select a time slot.");
+            }
         }
     </script>
 
