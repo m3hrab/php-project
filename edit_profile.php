@@ -102,21 +102,21 @@ if (isset($_POST['update_profile'])) {
 
 </head>
 <body>
-	<header class="header">
+<header class="header">
 		<a href="#" class ="logo"><i class="fa-solid fa-heart-pulse"></i>medical</a>
 		<nav class="navbar">
 			<ul>
-			  <li><a href="#home">Home</a></li>
-			  <li><a href="#service">Services</a>
-			  </li>
-			  <li><a href="#about">About Us</a></li>
-			  <li><a href="#doctor">Doctors</a></li>
-			  <li><a href="#contact">Diagnosis</a>	 </li>
-			  
-			  <li><a href="#contact">Rating</a></li>
-			  
-			  <li><a href="#appointment">Appointment</a></li>
-			  <li><a href="edit_profile.php">My Profile</a></li>
+                <li><a href="newhome.php">Home</a></li>
+                <li><a href="#service">Services</a>
+                </li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="doctors.php">Doctors</a></li>
+                <li><a href="#contact">Diagnosis</a>	 </li>
+                
+                <li><a href="#contact">Rating</a></li>
+                
+                <li><a href="#appointment">Appointment</a></li>
+                <li><a href="edit_profile.php">My Profile</a></li>
 			</ul>
 		</nav>
 		<div id="menu-bar" class="fas fa-bars"></div>

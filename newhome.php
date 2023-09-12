@@ -35,55 +35,29 @@ session_start();
         // Initial setup of the timeout
         timeoutId = setTimeout(logoutAfterTimeout, sessionTimeout);
 
-       
     </script>
 
 <body>
 
-
-
-<!-- Navigation -->
-
-
 <header class="header">
-	<a href="#" class ="logo"><i class="fa-solid fa-heart-pulse"></i>medical</a>
-	<nav class="navbar">
-		<ul>
-		 <!--img src="navlogo.jpg"-->
-		  <li><a href="#home">Home</a></li>
-		  <li><a href="#service">Services</a>
-			<!--<div class="submenu1">
-				<ul>
-					<li><a href="#contact">About Us</a></li>
-					<li><a href="#contact">Diagnosis</a></li>
-					<li><a href="#about">Contact</a></li>
-				</ul>
-			</div>
-			-->
-		  </li>
-		  <li><a href="#about">About Us</a></li>
-		  <li><a href="#doctor">Doctors</a></li>
-		  <li><a href="#contact">Diagnosis</a>
-			<!--
-			<div class="submenu1">
-				<ul>
-					<li><a href="#contact">About Us</a></li>
-					<li><a href="#contact">Diagnosis </a></li>
-					<li><a href="#about">Contact</a></li>
-				</ul>
-			</div>
-		  -->
-		  
-		  </li>
-		  
-		  <li><a href="#contact">Rating</a></li>
-		  
-		  <li><a href="#appointment">Appointment</a></li>
-		  <li><a href="edit_profile.php">My Profile</a></li>
-		</ul>
-	</nav>
-	<div id="menu-bar" class="fas fa-bars"></div>
-</header>
+		<a href="#" class ="logo"><i class="fa-solid fa-heart-pulse"></i>medical</a>
+		<nav class="navbar">
+			<ul>
+                <li><a href="newhome.php">Home</a></li>
+                <li><a href="#service">Services</a>
+                </li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="doctors.php">Doctors</a></li>
+                <li><a href="#contact">Diagnosis</a>	 </li>
+                
+                <li><a href="#contact">Rating</a></li>
+                
+                <li><a href="#appointment">Appointment</a></li>
+                <li><a href="edit_profile.php">My Profile</a></li>
+			</ul>
+		</nav>
+		<div id="menu-bar" class="fas fa-bars"></div>
+	</header>
 
 
 <section class="home" id ="home">
